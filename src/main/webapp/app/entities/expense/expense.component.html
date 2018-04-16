@@ -1,0 +1,76 @@
+<div>
+    <h2>
+        <span jhiTranslate="expensesApp.expense.home.title">Expenses</span>
+        <button class="btn btn-primary float-right jh-create-entity create-expense" [routerLink]="['/', { outlets: { popup: ['expense-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span  jhiTranslate="expensesApp.expense.home.createLabel">
+            Create new Expense
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="expenses">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="expensesApp.expense.description">Description</span></th>
+            <th><span jhiTranslate="expensesApp.expense.location">Location</span></th>
+            <th><span jhiTranslate="expensesApp.expense.expenseDate">Expense Date</span></th>
+            <th><span jhiTranslate="expensesApp.expense.amount">Amount</span></th>
+            <th><span jhiTranslate="expensesApp.expense.cashAccount">Cash Account</span></th>
+            <th><span jhiTranslate="expensesApp.expense.category">Category</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let expense of expenses ;trackBy: trackId">
+                <td><a [routerLink]="['../expense', expense.id ]">{{expense.id}}</a></td>
+                <td>{{expense.description}}</td>
+                <td>{{expense.location}}</td>
+                <td>{{expense.expenseDate | date:'mediumDate'}}</td>
+                <td>{{expense.amount}}</td>
+                <td>
+                    <div *ngIf="expense.cashAccount">
+                        <a [routerLink]="['../cash-account', expense.cashAccount?.id ]" >{{expense.cashAccount?.name}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="expense.category">
+                        <a [routerLink]="['../category', expense.category?.id ]" >{{expense.category?.name}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../expense', expense.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'expense/'+ expense.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'expense/'+ expense.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

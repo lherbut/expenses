@@ -1,0 +1,27 @@
+
+{
+    "expensesApp": {
+        "expense" : {
+            "home": {
+                "title": "Expenses",
+                "createLabel": "Dodaj Expense",
+                "createOrEditLabel": "Dodaj lub edytuj: Expense"
+            },
+            "created": "Utworzono nowy Expense z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Expense z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Expense z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Expense {{ id }}?"
+            },
+            "detail": {
+                "title": "Expense"
+            },
+            "description": "Description",
+            "location": "Location",
+            "expenseDate": "Expense Date",
+            "amount": "Amount",
+            "cashAccount": "Cash Account",
+            "category": "Category"
+        }
+    }
+}

@@ -1,0 +1,64 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myExpenseLabel" jhiTranslate="expensesApp.expense.home.createOrEditLabel">Create or edit a Expense</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!expense.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="expense.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="expensesApp.expense.description" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="expense.description" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="expensesApp.expense.location" for="field_location">Location</label>
+            <input type="text" class="form-control" name="location" id="field_location"
+                [(ngModel)]="expense.location" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="expensesApp.expense.expenseDate" for="field_expenseDate">Expense Date</label>
+            <div class="input-group">
+                <input id="field_expenseDate" type="text" class="form-control" name="expenseDate" ngbDatepicker  #expenseDateDp="ngbDatepicker" [(ngModel)]="expense.expenseDate"
+                />
+                <span class="input-group-append">
+                    <button type="button" class="btn btn-secondary" (click)="expenseDateDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="expensesApp.expense.amount" for="field_amount">Amount</label>
+            <input type="number" class="form-control" name="amount" id="field_amount"
+                [(ngModel)]="expense.amount" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="expensesApp.expense.cashAccount" for="field_cashAccount">Cash Account</label>
+            <select class="form-control" id="field_cashAccount" name="cashAccount" [(ngModel)]="expense.cashAccount" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="cashAccountOption.id === expense.cashAccount?.id ? expense.cashAccount : cashAccountOption" *ngFor="let cashAccountOption of cashaccounts; trackBy: trackCashAccountById">{{cashAccountOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="expensesApp.expense.category" for="field_category">Category</label>
+            <select class="form-control" id="field_category" name="category" [(ngModel)]="expense.category" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="categoryOption.id === expense.category?.id ? expense.category : categoryOption" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
