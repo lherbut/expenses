@@ -1,0 +1,22 @@
+
+{
+    "expensesApp": {
+        "cashAccount" : {
+            "home": {
+                "title": "Cash Accounts",
+                "createLabel": "Dodaj Cash Account",
+                "createOrEditLabel": "Dodaj lub edytuj: Cash Account"
+            },
+            "created": "Utworzono nowy Cash Account z identyfikatorem {{ param }}",
+            "updated": "Uaktualniono Cash Account z identyfikatorem {{ param }}",
+            "deleted": "Usunięto Cash Account z identyfikatorem {{ param }}",
+            "delete": {
+                "question": "Czy na pewno chcesz usunąć Cash Account {{ id }}?"
+            },
+            "detail": {
+                "title": "Cash Account"
+            },
+            "name": "Name"
+        }
+    }
+}
