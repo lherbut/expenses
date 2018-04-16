@@ -9,6 +9,7 @@
                 "main": "Entities",
                 "cashAccount": "Cash Account",
                 "category": "Category",
+                "expense": "Expense",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
